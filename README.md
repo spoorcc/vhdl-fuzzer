@@ -6,9 +6,11 @@ Generates random VHDL files for fuzzing VHDL compiler/parsers
 
 Build GramTest  and create gramtest.jar using maven
 
-    cd gramtest && mvn compile
-    
+    cd gramtest
+    mvn compile
+    mvn package
+
 Run fuzzer
 
-    java -jar gramtest.jar -file vhdl.bnf
-   
+    java -jar gramtest/target/gramtest*.jar -file vhdl.bnf
+
