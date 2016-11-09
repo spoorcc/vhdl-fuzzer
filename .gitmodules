@@ -1,0 +1,3 @@
+[submodule "gramtest"]
+	path = gramtest
+	url = http://github.com/codelion/gramtest.git
