@@ -316,7 +316,7 @@
 	| procedure  | function	     | package
 	| type	     | subtype	     | constant
 	| signal     | variable	     | component
-	| label	     | literal	     | units
+	| <label>	     | <literal>	     | units
 	| group	     | file
 
 <entity_class_entry> ::=	<entity_class> [ <> ]
@@ -539,9 +539,13 @@
 	while <condition>
 	| for <loop_parameter_specification>
 
-label ::= <identifier>
+<label> ::= <identifier>
 
 <letter> ::= <upper_case_letter> | <lower_case_letter>
+
+<upper_case_letter> ::= A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+
+<lower_case_letter> ::= a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z
 
 <letter_or_digit> ::= <letter> | <digit>
 
