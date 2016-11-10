@@ -57,7 +57,7 @@
 	[ <formal_part> => ] <actual_part>
 
 <association_list> ::=
-	<association_element> { , <association_element> }
+	<association_element> { "," <association_element> }
 
 <attribute_declaration> ::=
 	attribute <identifier> ":" <type_mark> ;
@@ -65,7 +65,7 @@
 <attribute_designator> ::= <attribute_simple_name>
 
 <attribute_name> ::=
-	<prefix> [ <signature> ] ' <attribute_designator> [ "(" <expression> ")" ]
+	<prefix> [ <signature> ] "'" <attribute_designator> [ "(" <expression> ")" ]
 
 <attribute_specification> ::=
 	attribute <attribute_designator> of <entity_specification> is <expression> ;
@@ -80,7 +80,7 @@
 	<extended_digit> { [ <underline> ] <extended_digit> }
 
 <based_literal> ::=
-	<base> # <based_integer> [ . <based_integer> ] # [ <exponent> ]
+	<base> "#" <based_integer> [ "." <based_integer> ] "#" [ <exponent> ]
 
 <basic_character> ::=
 	<basic_graphic_character> | <format_effector>
@@ -96,7 +96,7 @@
 	[ <generic_map_aspect> ]
 	[ <port_map_aspect> ]
 
-<bit_string_literal> ::=	<base_specifier> " <bit_value> "
+<bit_string_literal> ::=	<base_specifier> """ <bit_value> """
 
 <bit_value> ::= <extended_digit> { [ <underline> ] <extended_digit> }
 
@@ -104,7 +104,7 @@
 	for <block_specification>
 		{ <use_clause> }
 		{ <configuration_item> }
-	end for ;
+	end for ";"
 
 <block_declarative_item> ::=
 	<subprogram_declaration>
@@ -130,9 +130,9 @@
 
 <block_header> ::=
 	[ <generic_clause>
-	[ <generic_map_aspect> ; ] ]
+	[ <generic_map_aspect> ";" ] ]
 	[ <port_clause>
-	[ <port_map_aspect> ; ] ]
+	[ <port_map_aspect> ";" ] ]
 
 <block_specification> ::=
 	<architecture_name>
@@ -146,7 +146,7 @@
 			<block_declarative_part>
 		begin
 			<block_statement_part>
-		end block [ <block_label> ] ;
+		end block [ <block_label> ] ";"
 
 <block_statement_part> ::=
 	{ <concurrent_statement> }
@@ -156,13 +156,13 @@
 		case <expression> is
 			<case_statement_alternative>
 			{ <case_statement_alternative> }
-		end case [ <case_label> ] ;
+		end case [ <case_label> ] ";"
 
 <case_statement_alternative> ::=
 	when <choices> =>
 		<sequence_of_statements>
 
-<character_literal> ::= ' <graphic_character> '
+<character_literal> ::= "'" <graphic_character> "'"
 
 <choice> ::=
 	<simple_expression>
@@ -174,21 +174,21 @@
 
 <component_configuration> ::=
 	for <component_specification>
-		[ <binding_indication> ; ]
+		[ <binding_indication> ";" ]
 		[ <block_configuration> ]
-	end for ;
+	end for ";"
 
 <component_declaration> ::=
 	component <identifier> [ is ]
 		[ <local_generic_clause> ]
 		[ <local_port_clause> ]
-	end component [ <component_simple_name> ] ;
+	end component [ <component_simple_name> ] ";"
 
 <component_instantiation_statement> ::=
-	<instantiation_label> :
+	<instantiation_label> ":"
 		<instantiated_unit>
 			[ <generic_map_aspect> ]
-			[ <port_map_aspect> ] ;
+			[ <port_map_aspect> ] ";"
 
 <component_specification> ::=
 	<instantiation_list> ":" <component_name>
@@ -201,7 +201,7 @@
 	[ <label> ":" ] [ postponed ] <assertion> ;
 
 <concurrent_procedure_call_statement> ::=
-	[ <label> ":" ] [ postponed ] <procedure_call> ;
+	[ <label> ":" ] [ postponed ] <procedure_call> ";"
 
 <concurrent_signal_assignment_statement> ::=
 	  [ <label> ":" ] [ postponed ] <conditional_signal_assignment>
@@ -221,7 +221,7 @@
 <condition_clause> ::= until <condition>
 
 <conditional_signal_assignment> ::=
-	<target>	<= <options> <conditional_waveforms> ;
+	<target>	<= <options> <conditional_waveforms> ";"
 
 <conditional_waveforms> ::=
 	{ <waveform> when <condition> <else> }
@@ -231,7 +231,7 @@
 	configuration <identifier> of <entity_name> is
 		<configuration_declarative_part>
 		<block_configuration>
-	end [ configuration ] [ <configuration_simple_name> ] ;
+	end [ configuration ] [ <configuration_simple_name> ] ";"
 
 <configuration_declarative_item> ::=
 	<use_clause>
@@ -246,10 +246,10 @@
 	| <component_configuration>
 
 <configuration_specification> ::=
-	for <component_specification> <binding_indication> ;
+	for <component_specification> <binding_indication> ";"
 
 <constant_declaration> ::=
-	constant <identifier_list> ":" <subtype_indication> [ := <expression> ] ;
+	constant <identifier_list> ":" <subtype_indication> [ := <expression> ] ";"
 
 <constrained_array_definition> ::=
 	array <index_constraint> of <element_subtype_indication>
@@ -264,7 +264,7 @@
 	<library_clause>
 	| <use_clause>
 
-<decimal_literal> ::= <integer> [ . <integer> ] [ <exponent> ]
+<decimal_literal> ::= <integer> [ "." <integer> ] [ <exponent> ]
 
 <declaration> ::=
 	<type_declaration>
@@ -294,7 +294,7 @@
 <direction> ::= to | downto
 
 <disconnection_specification> ::=
-	disconnect <guarded_signal_specification> after <time_expression> ;
+	disconnect <guarded_signal_specification> after <time_expression> ";"
 
 <discrete_range> ::= <discrete_subtype_indication> | <range>
 
@@ -302,7 +302,7 @@
 	[ <choices> => ] <expression>
 
 <element_declaration> ::=
-	<identifier_list> ":" <element_subtype_definition> ;
+	<identifier_list> ":" <element_subtype_definition> ";"
 
 <element_subtype_definition> ::= <subtype_indication>
 
@@ -322,7 +322,7 @@
 <entity_class_entry> ::=	<entity_class> [ <> ]
 
 <entity_class_entry_list> ::=
-	<entity_class_entry> { , <entity_class_entry> }
+	<entity_class_entry> { "," <entity_class_entry> }
 
 <entity_declaration> ::=
 	entity <identifier> is
@@ -330,7 +330,7 @@
 		<entity_declarative_part>
       [ begin
 		<entity_statement_part> ]
-	end [ entity ] [ <entity_simple_name> ] ;
+	end [ entity ] [ <entity_simple_name> ] ";"
 
 <entity_declarative_item> ::=
 	<subprogram_declaration>
@@ -359,7 +359,7 @@
 	[ <formal_port_clause> ]
 
 <entity_name_list> ::=
-	<entity_designator> { , <entity_designator> }
+	<entity_designator> { "," <entity_designator> }
 	| others
 	| all
 
@@ -379,12 +379,12 @@
 <enumeration_literal> ::= <identifier> | <character_literal>
 
 <enumeration_type_definition> ::=
-	"(" <enumeration_literal> { , <enumeration_literal> } ")"
+	"(" <enumeration_literal> { "," <enumeration_literal> } ")"
 
 <exit_statement> ::=
-	[ <label> ":" ] exit [ <loop_label> ] [ when <condition> ] ;
+	[ <label> ":" ] exit [ <loop_label> ] [ when <condition> ] ";"
 
-<exponent> ::= <E> [ + ] <integer> | <E> - <integer>
+<exponent> ::= E [ + ] <integer> | E - <integer>
 
 <expression> ::=
 	  <relation> { and <relation> }
@@ -405,7 +405,7 @@
 	| not <primary>
 
 <file_declaration> ::=
-	file <identifier_list> ":" <subtype_indication> [ <file_open_information> ] ;
+	file <identifier_list> ":" <subtype_indication> [ <file_open_information> ] ";"
 
 <file_logical_name> ::= <string_expression>
 
@@ -430,13 +430,13 @@
 	| <type_mark> "(" <formal_designator> ")"
 
 <full_type_declaration> ::=
-	type <identifier> is <type_definition> ;
+	type <identifier> is <type_definition> ";"
 
 <function_call> ::=
 	<function_name> [ "(" <actual_parameter_part> ")" ]
 
 <generate_statement> ::=
-	<generate_label> :
+	<generate_label> ":"
 		<generation_scheme> generate
 			[ { <block_declarative_item> }
 		begin ]
@@ -448,7 +448,7 @@
 	| if <condition>
 
 <generic_clause> ::=
-	generic "(" <generic_list> ")" ;
+	generic "(" <generic_list> ")" ";"
 
 <generic_list> ::= <generic_interface_list>
 
@@ -460,13 +460,13 @@
 
 <group_constituent> ::= <name> | <character_literal>
 
-<group_constituent_list> ::= <group_constituent> { , <group_constituent> }
+<group_constituent_list> ::= <group_constituent> { "," <group_constituent> }
 
 <group_template_declaration> ::=
-	group <identifier> is "(" <entity_class_entry_list> ")" ;
+	group <identifier> is "(" <entity_class_entry_list> ")" ";"
 
 <group_declaration> ::=
-	group <identifier> ":" <group_template_name> "(" <group_constituent_list> ")" ;
+	group <identifier> ":" <group_template_name> "(" <group_constituent_list> ")" ";"
 
 <guarded_signal_specification> ::=
 	<guarded_signal_list> ":" <type_mark>
@@ -474,7 +474,7 @@
 <identifier> ::=
 	<basic_identifier> | <extended_identifier>
 
-<identifier_list> ::= <identifier> { , <identifier> }
+<identifier_list> ::= <identifier> { "," <identifier> }
 
 <if_statement> ::=
 	[ <if_label> ":" ]
@@ -484,9 +484,9 @@
 			<sequence_of_statements> }
 		[ else
 			<sequence_of_statements> ]
-		end if [ <if_label> ] ;
+		end if [ <if_label> ] ";"
 
-<incomplete_type_declaration> ::=	 type <identifier> ;
+<incomplete_type_declaration> ::=	 type <identifier> ";"
 
 <index_constraint> ::= "(" <discrete_range> { , <discrete_range> } ")"
 
@@ -504,7 +504,7 @@
 	| configuration <configuration_name>
 
 <instantiation_list> ::=
-	<instantiation_label> { , <instantiation_label> }
+	<instantiation_label> { "," <instantiation_label> }
 	| others
 	| all
 
@@ -527,7 +527,7 @@
 	file <identifier_list> ":" <subtype_indication>
 
 <interface_list> ::=
-	<interface_element> { ; <interface_element> }
+	<interface_element> { ";" <interface_element> }
 
 <interface_signal_declaration> ::=
 	[ signal ] <identifier_list> ":" [ <mode> ] <subtype_indication> [ bus ] [ := <static_expression> ]
@@ -549,7 +549,7 @@
 
 <letter_or_digit> ::= <letter> | <digit>
 
-<library_clause> ::= library <logical_name_list> ;
+<library_clause> ::= library <logical_name_list> ";"
 
 <library_unit> ::=
 	<primary_unit>
@@ -564,7 +564,7 @@
 
 <logical_name> ::= <identifier>
 
-<logical_name_list> ::= <logical_name> { , <logical_name> }
+<logical_name_list> ::= <logical_name> { "," <logical_name> }
 
 <logical_operator> ::= and | or | nand | nor | xor | xnor
 
@@ -572,7 +572,7 @@
 	[ <loop_label> ":" ]
 		[ <iteration_scheme> ] loop
 			<sequence_of_statements>
-		end loop [ <loop_label> ] ;
+		end loop [ <loop_label> ] ";"
 
 <miscellaneous_operator> ::= ** | abs | not
 
@@ -589,9 +589,9 @@
 	| <attribute_name>
 
 <next_statement> ::=
-	[ <label> ":" ] next [ <loop_label> ] [ when <condition> ] ;
+	[ <label> ":" ] next [ <loop_label> ] [ when <condition> ] ";"
 
-<null_statement> ::= [ <label> ":" ] null ;
+<null_statement> ::= [ <label> ":" ] null ";"
 
 <numeric_literal> ::=
 	<abstract_literal>
@@ -610,7 +610,7 @@
 <package_body> ::=
 	package body <package_simple_name> is
 		<package_body_declarative_part>
-	end [ package body ] [ <package_simple_name> ] ;
+	end [ package body ] [ <package_simple_name> ] ";"
 
 <package_body_declarative_item> ::=
 	<subprogram_declaration>
@@ -631,7 +631,7 @@
 <package_declaration> ::=
 	package <identifier> is
 		<package_declarative_part>
-	end [ package ] [ <package_simple_name> ] ;
+	end [ package ] [ <package_simple_name> ] ";"
 
 <package_declarative_item> ::=
 	<subprogram_declaration>
@@ -666,7 +666,7 @@
 		end units [ <physical_type_simple_name> ]
 
 <port_clause> ::=
-	port "(" <port_list> ")" ;
+	port "(" <port_list> ")" ";"
 
 <port_list> ::= <port_interface_list>
 
@@ -695,7 +695,7 @@
 <procedure_call> ::= <procedure_name> [ "(" <actual_parameter_part> ")" ]
 
 <procedure_call_statement> ::=
-	[ <label> ":" ] <procedure_call> ;
+	[ <label> ":" ] <procedure_call> ";"
 
 <process_declarative_item> ::=
 	<subprogram_declaration>
@@ -721,14 +721,14 @@
 			<process_declarative_part>
 		begin
 			<process_statement_part>
-		end [ postponed ] process [ <process_label> ] ;
+		end [ postponed ] process [ <process_label> ] ";"
 
 <process_statement_part> ::=
 	{ <sequential_statement> }
 
 <qualified_expression> ::=
-	<type_mark> ' "(" <expression> ")"
-	| <type_mark> ' <aggregate>
+	<type_mark> "'" "(" <expression> ")"
+	| <type_mark> "'" <aggregate>
 
 <range> ::=
 	<range_attribute_name>
@@ -750,10 +750,10 @@
 <report_statement> ::=
 	[ <label> ":" ]
 		report <expression>
-			[ severity <expression> ] ;
+			[ severity <expression> ] ";"
 
 <return_statement> ::=
-	[ <label> ":" ] return [ <expression> ] ;
+	[ <label> ":" ] return [ <expression> ] ";"
 
 <scalar_type_definition> ::=
 	<enumeration_type_definition>   | <integer_type_definition>
@@ -763,21 +763,21 @@
 	<architecture_body>
 	| <package_body>
 
-<secondary_unit_declaration> ::=	<identifier> = <physical_literal> ;
+<secondary_unit_declaration> ::=	<identifier> = <physical_literal> ";"
 
-<selected_name> ::= <prefix> . <suffix>
+<selected_name> ::= <prefix> "." <suffix>
 
 <selected_signal_assignment> ::=
 	with <expression> select
-		<target>	<= <options> <selected_waveforms> ;
+		<target>	<= <options> <selected_waveforms> ";"
 
 <selected_waveforms> ::=
-	{ <waveform> when <choices> , }
+	{ <waveform> when <choices> "," }
 	<waveform> when <choices>
 
 <sensitivity_clause> ::=	on <sensitivity_list>
 
-<sensitivity_list> ::= <signal_name> { , <signal_name> }
+<sensitivity_list> ::= <signal_name> { "," <signal_name> }
 
 <sequence_of_statements> ::=
 	{ <sequential_statement> }
@@ -805,19 +805,19 @@
 <sign> ::= + | -
 
 <signal_assignment_statement> ::=
-	[ <label> ":" ] <target> <= [ <delay_mechanism> ] <waveform> ;
+	[ <label> ":" ] <target> <= [ <delay_mechanism> ] <waveform> ";"
 
 <signal_declaration> ::=
-	signal <identifier_list> ":" <subtype_indication> [ <signal_kind> ] [ := <expression> ] ;
+	signal <identifier_list> ":" <subtype_indication> [ <signal_kind> ] [ := <expression> ] ";"
 
 <signal_kind> ::=	 register  |  bus
 
 <signal_list> ::=
-	<signal_name> { , <signal_name> }
+	<signal_name> { "," <signal_name> }
 	| others
 	| all
 
-<signature> ::= [ [ <type_mark> { , <type_mark> } ] [ return <type_mark> ] ]
+<signature> ::= [ [ <type_mark> { "," <type_mark> } ] [ return <type_mark> ] ]
 
 <simple_expression> ::=
 	[ <sign> ] <term> { <adding_operator> <term> }
@@ -826,17 +826,17 @@
 
 <slice_name> ::=	<prefix> "(" <discrete_range> ")"
 
-<string_literal> ::= " { <graphic_character> } "
+<string_literal> ::= """ { <graphic_character> } """
 
 <subprogram_body> ::=
 	<subprogram_specification> is
 		<subprogram_declarative_part>
 	begin
 		<subprogram_statement_part>
-	end [ <subprogram_kind> ] [ <designator> ] ;
+	end [ <subprogram_kind> ] [ <designator> ] ";"
 
 <subprogram_declaration> ::=
-	<subprogram_specification> ;
+	<subprogram_specification> ";"
 
 <subprogram_declarative_item> ::=
 	<subprogram_declaration>
@@ -904,23 +904,23 @@
 	| <subtype_name>
 
 <unconstrained_array_definition> ::=
-	array "(" <index_subtype_definition> { , <index_subtype_definition> } ")"
+	array "(" <index_subtype_definition> { "," <index_subtype_definition> } ")"
 		of <element_subtype_indication>
 
 <use_clause> ::=
-	use <selected_name> { , <selected_name> } ;
+	use <selected_name> { "," <selected_name> } ";"
 
 <variable_assignment_statement> ::=
-	[ <label> ":" ] <target>  := <expression> ;
+	[ <label> ":" ] <target>  := <expression> ";"
 
 <variable_declaration> ::=
-	[ shared ] variable <identifier_list> ":" <subtype_indication> [ := <expression> ] ;
+	[ shared ] variable <identifier_list> ":" <subtype_indication> [ := <expression> ] ";"
 
 <wait_statement> ::=
 	[ <label> ":" ] wait [ <sensitivity_clause> ] [ <condition_clause> ] [ <timeout_clause> ] ;
 
 <waveform> ::=
-	<waveform_element> { , <waveform_element> }
+	<waveform_element> { "," <waveform_element> }
 	| unaffected
 
 <waveform_element> ::=
